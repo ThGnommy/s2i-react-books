@@ -1,40 +1,33 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { TextField } from '@material-ui/core'
+import React, { useContext } from "react";
+import { TextField } from "@material-ui/core";
+import { BookContext } from "../../BookProvider";
 
-export const Searchbar = (props) => {
+export const Searchbar = () => {
+  const [name, setName] = useContext(BookContext);
 
-    const useStyles = makeStyles({
-        root: {
-            width: '50vw'
-        },
-        cssLabel: {
-            color: 'red'
-        },
-    })
+  const handleSetName = (e) => {
+    setName(e.target.value);
+  };
 
-    const classes = useStyles();
-
-    return (
-        <>
-        <TextField
-          id="filled-full-width"
-          label="Name"
-          style={{ margin: 8 }}
-          placeholder="Search..."
-          margin="normal"
-        //   value={props.value}
-          onChange={props.onChange}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-                color: 'white',
-                borderColor: 'green'
-            }
-          }}
-          InputProps={{style: {color: 'white', borderColor: 'white'}}}
-          variant="filled"
-        />
-        </>
-    )
-}
+  return (
+    <>
+      <TextField
+        id="filled-full-width"
+        label="Name"
+        style={{ margin: 8 }}
+        placeholder="Search..."
+        margin="normal"
+        onChange={handleSetName}
+        InputLabelProps={{
+          shrink: true,
+          style: {
+            color: "white",
+            borderColor: "green",
+          },
+        }}
+        InputProps={{ style: { color: "white", borderColor: "white" } }}
+        variant="filled"
+      />
+    </>
+  );
+};
