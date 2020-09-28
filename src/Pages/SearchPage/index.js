@@ -10,8 +10,8 @@ import {
   Switch,
   Fab,
 } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { ArrowUpward } from "@material-ui/icons";
-
 import { Searchbar } from "../../components/Searchbar";
 import { makeStyles } from "@material-ui/core/styles";
 import { BookList } from "../../components/BookList";
@@ -56,8 +56,9 @@ export const SearchPage = () => {
       height: "50px",
     },
   }));
-
   const classes = useStyles();
+  const fabOnlyMobile = useMediaQuery("(max-width:600px)");
+
   const { loader } = useContext(BookContext);
   const [loaderValue, setLoaderValue] = loader;
 
@@ -131,14 +132,18 @@ export const SearchPage = () => {
             <BookList />
           )}
         </Grid>
-        <Fab
-          onClick={handleFabArrow}
-          className={classes.fab}
-          color="secondary"
-          aria-label="go-top"
-        >
-          <ArrowUpward />
-        </Fab>
+        {fabOnlyMobile && (
+          <>
+            <Fab
+              onClick={handleFabArrow}
+              className={classes.fab}
+              color="secondary"
+              aria-label="go-top"
+            >
+              <ArrowUpward />
+            </Fab>
+          </>
+        )}
       </Container>
     </>
   );
