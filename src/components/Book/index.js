@@ -1,35 +1,101 @@
-import React from 'react'
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  CardMedia,
+  Typography,
+  Button,
+  makeStyles,
+  Grid,
+} from "@material-ui/core";
+import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
 
-export const Book = (props) => {
-    
-    return(
-        <>
-            <Card>
-      <CardActionArea>
-        <CardMedia
-          image="http://books.google.com/books/content?id=lKq8ngEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-          title="World of Warcraft, Cronache"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
+const useStyles = makeStyles({
+  root: {
+    padding: "1rem",
+    textAlign: "center",
+  },
+  media: {
+    height: 240,
+    backgroundSize: "contain",
+    margin: "1rem",
+  },
+  button: {
+    justifyContent: "center",
+  },
+  link: {
+    textDecoration: "none",
+  },
+});
+
+export const Book = ({
+  title,
+  id,
+  author,
+  subtitle,
+  description,
+  publisher,
+  publisherDate,
+  rating,
+  previewLink,
+}) => {
+  const classes = useStyles();
+
+  const { bookList } = useContext(BookContext);
+  const [bookListValue, setBookListValue] = bookList;
+
+  const { selectedBook } = useContext(BookContext);
+  const [selectedBookValue, setSelectedBookValue] = selectedBook;
+
+  const getCurrentBookDetails = () => {
+    setSelectedBookValue({
+      title: handleIfPropsUndefined(title),
+      id: handleIfPropsUndefined(id),
+      authors: handleIfPropsUndefined(author),
+      subtitle: handleIfPropsUndefined(subtitle),
+      publisher: handleIfPropsUndefined(publisher),
+      description: handleIfPropsUndefined(description),
+      publisherDate: handleIfPropsUndefined(publisherDate),
+      rating: handleIfPropsUndefined(rating),
+      previewLink: handleIfPropsUndefined(previewLink),
+    });
+  };
+
+  return (
+    <>
+      <Grid xs={12} md={6} lg={3} className={classes.root} item>
+        <Card>
+          <CardMedia
+            image={`http://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
+            className={classes.media}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography gutterBottom component="h6">
+              {author}
+            </Typography>
+            <Typography gutterBottom component="h6">
+              {publisherDate}
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.button}>
+            <Link
+              to={`/book/${title.replace(/\s/g, "")}`}
+              onClick={getCurrentBookDetails}
+              className={classes.link}
+              state={bookListValue}
+            >
+              <Button size="small" color="primary">
+                More Info
+              </Button>
+            </Link>
+          </CardActions>
+        </Card>
+      </Grid>
     </>
-    )
-}
+  );
+};

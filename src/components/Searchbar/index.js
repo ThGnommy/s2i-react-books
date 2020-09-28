@@ -1,32 +1,24 @@
 import React, { useContext } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import { BookContext } from "../../BookProvider";
 
 export const Searchbar = () => {
-  const [name, setName] = useContext(BookContext);
+  const { query } = useContext(BookContext);
+  const [queryValue, setqueryValue] = query;
 
   const handleSetName = (e) => {
-    setName(e.target.value);
+    setqueryValue(e.target.value);
   };
 
   return (
     <>
       <TextField
-        id="filled-full-width"
-        label="Name"
-        style={{ margin: 8 }}
-        placeholder="Search..."
-        margin="normal"
+        fullWidth
+        value={queryValue}
         onChange={handleSetName}
-        InputLabelProps={{
-          shrink: true,
-          style: {
-            color: "white",
-            borderColor: "green",
-          },
-        }}
-        InputProps={{ style: { color: "white", borderColor: "white" } }}
-        variant="filled"
+        id="filled-basic"
+        label="Book name..."
+        variant="outlined"
       />
     </>
   );
