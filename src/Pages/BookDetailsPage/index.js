@@ -83,7 +83,7 @@ export const BookDetailsPage = () => {
           <Card className={classes.card}>
             <CardMedia
               className={classes.media}
-              image={`http://books.google.com/books/content?id=${selectedBookValue.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
+              image={`https://books.google.com/books/content?id=${selectedBookValue.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
             />
           </Card>
         </Grid>

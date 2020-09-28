@@ -68,7 +68,7 @@ export const Book = ({
       <Grid xs={12} md={6} lg={3} className={classes.root} item>
         <Card>
           <CardMedia
-            image={`http://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
+            image={`https://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
             className={classes.media}
           />
           <CardContent>
