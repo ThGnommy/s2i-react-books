@@ -13,6 +13,9 @@ export const ButtonSearch = () => {
   const { loader } = useContext(BookContext);
   const [loaderValue, setLoaderValue] = loader;
 
+  const { freeEbook } = useContext(BookContext);
+  const [freeEbookValue, setFreeEbookValue] = freeEbook;
+
   const handleButtonClick = () => {
     if (queryValue !== "") {
       fetchData();
@@ -26,7 +29,7 @@ export const ButtonSearch = () => {
     setLoaderValue(true);
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${queryValue}&key=${process.env.REACT_APP_API_KEY}`
+        `https://www.googleapis.com/books/v1/volumes?q=${queryValue}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbookValue}`
       )
       .then((response) => {
         console.log(response.data.items);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Container,
   Grid,
@@ -6,7 +6,12 @@ import {
   AppBar,
   Toolbar,
   CircularProgress,
+  FormControlLabel,
+  Switch,
+  Fab,
 } from "@material-ui/core";
+import { ArrowUpward } from "@material-ui/icons";
+
 import { Searchbar } from "../../components/Searchbar";
 import { makeStyles } from "@material-ui/core/styles";
 import { BookList } from "../../components/BookList";
@@ -23,9 +28,17 @@ export const SearchPage = () => {
     searchBar: {
       padding: theme.spacing(3),
     },
+    fab: {
+      position: "fixed",
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
     buttonSearch: {
       padding: theme.spacing(3),
       marginBottom: theme.spacing(3),
+    },
+    freeEbook: {
+      padding: theme.spacing(3),
     },
     appBar: {
       padding: "1rem",
@@ -48,9 +61,29 @@ export const SearchPage = () => {
   const { loader } = useContext(BookContext);
   const [loaderValue, setLoaderValue] = loader;
 
+  const { freeEbook } = useContext(BookContext);
+  const [freeEbookValue, setFreeEbookValue] = freeEbook;
+
+  const [checked, setChecked] = useState(false);
+
+  const handleSwitchFreeEbook = () => {
+    setChecked(!checked);
+
+    if (checked !== true) {
+      setFreeEbookValue("filter=free-ebooks");
+    } else {
+      setFreeEbookValue("");
+    }
+  };
+
+  const handleFabArrow = () => {
+    const element = document.querySelector("#container");
+    element.scrollIntoView();
+  };
+
   return (
     <>
-      <Container>
+      <Container id="container">
         <Grid justify="center" alignItems="center" container>
           <AppBar className={classes.appBar} position="relative">
             <Toolbar>
@@ -65,8 +98,21 @@ export const SearchPage = () => {
           container
           justify="center"
           alignItems="center"
+          direction="column"
         >
           <Searchbar />
+          <FormControlLabel
+            className={classes.freeEbook}
+            control={
+              <Switch
+                checked={checked}
+                onChange={handleSwitchFreeEbook}
+                name="FreeEbook"
+                color="primary"
+              />
+            }
+            label="Only free-ebook"
+          />
         </Grid>
         <Grid
           className={classes.buttonSearch}
@@ -85,6 +131,14 @@ export const SearchPage = () => {
             <BookList />
           )}
         </Grid>
+        <Fab
+          onClick={handleFabArrow}
+          className={classes.fab}
+          color="secondary"
+          aria-label="go-top"
+        >
+          <ArrowUpward />
+        </Fab>
       </Container>
     </>
   );

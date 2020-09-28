@@ -11,7 +11,7 @@ export const BookProvider = (props) => {
   const [bookList, setBookList] = useState([]);
   const [loader, setLoader] = useState(false);
   const [selectedBook, setSelectedBook] = useState({});
-
+  const [freeEbook, setFreeEbook] = useState("");
   return (
     <BookContext.Provider
       value={{
@@ -19,6 +19,7 @@ export const BookProvider = (props) => {
         bookList: [bookList, setBookList],
         selectedBook: [selectedBook, setSelectedBook],
         loader: [loader, setLoader],
+        freeEbook: [freeEbook, setFreeEbook],
       }}
     >
       {props.children}
