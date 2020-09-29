@@ -17,7 +17,7 @@ import { searchPageStyles } from "../../styles";
 import { BookList } from "../../components/BookList";
 import { ButtonSearch } from "../../components/ButtonSearch";
 import { BookContext } from "../../BookProvider";
-
+import ScrollToTop from "../../components/ScrollToTop";
 import "../../App.css";
 
 export const SearchPage = () => {
@@ -46,13 +46,13 @@ export const SearchPage = () => {
   };
 
   const handleFabArrow = () => {
-    const element = document.querySelector("#container");
-    element.scrollIntoView();
+    window.scrollTo(0, 0);
   };
 
   return (
     <>
       <Container id="container">
+        <ScrollToTop />
         <Grid justify="center" alignItems="center" container>
           <AppBar className={classes.appBar} position="relative">
             <Toolbar>

@@ -29,6 +29,7 @@ export const BookDetailsPage = () => {
   return (
     <>
       <Container>
+        <ScrollToTop />
         <Grid justify="center" alignItems="center" container>
           <AppBar className={classes.appBar} position="relative">
             <Toolbar>
