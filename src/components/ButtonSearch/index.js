@@ -4,20 +4,8 @@ import { BookContext } from "../../BookProvider";
 import axios from "axios";
 
 export const ButtonSearch = () => {
-  const { query } = useContext(BookContext);
+  const { query, bookList: [bookListValue, setBookListValue], loader: [loaderValue, setLoaderValue],  freeEbook: [freeEbookValue, setFreeEbookValue]} = useContext(BookContext);
   const [queryValue, setqueryValue] = query;
-
-  const { bookList } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [bookListValue, setBookListValue] = bookList;
-
-  const { loader } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [loaderValue, setLoaderValue] = loader;
-
-  const { freeEbook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [freeEbookValue, setFreeEbookValue] = freeEbook;
 
   const handleButtonClick = () => {
     if (queryValue !== "") {
