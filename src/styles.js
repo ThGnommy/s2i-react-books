@@ -86,9 +86,9 @@ export const bookStyles = makeStyles({
     padding: "1rem",
     textAlign: "center",
   },
-  media: {
+  imageBook: {
     height: 240,
-    backgroundSize: "contain",
+    backgroundSize: "contain!important",
     margin: "1rem",
   },
   button: {

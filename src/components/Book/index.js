@@ -54,7 +54,7 @@ export const Book = ({
         <Card>
           <CardMedia
             image={`https://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
-            className={classes.media}
+            className={classes.imageBook}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
