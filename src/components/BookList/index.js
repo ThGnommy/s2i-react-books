@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Book } from "../../components/Book";
 import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
-import { Grid } from "@material-ui/core";
 
 export const BookList = () => {
   const { bookList } = useContext(BookContext);

@@ -11,58 +11,19 @@ import {
   AccordionSummary,
   AccordionDetails,
   Container,
+  Fab,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Rating from "@material-ui/lab/Rating";
-import { makeStyles } from "@material-ui/core/styles";
+import { bookDetailsPageStyles } from "../../styles";
 import { BookContext } from "../../BookProvider";
 import { Link } from "react-router-dom";
-
-const useStyles = makeStyles({
-  root: {
-    textAlign: "center",
-  },
-  card: {
-    margin: "3rem",
-  },
-  media: {
-    height: 500,
-    width: 300,
-    backgroundSize: "cover",
-  },
-  appBar: {
-    padding: "1rem",
-    margin: "1rem",
-    alignItems: "center",
-  },
-  title: {
-    fontWeight: 400,
-    letterSpacing: "1rem",
-    fontStyle: "italic",
-    color: "#fff",
-  },
-  link: {
-    textDecoration: "none",
-    marginTop: "1rem",
-  },
-  text: {
-    fontSize: "1.5rem",
-    margin: "1rem 0",
-  },
-  description: {
-    fontSize: "1.5rem",
-    margin: "0.5rem 0",
-    fontStyle: "italic",
-  },
-  button: {
-    margin: "1rem 0",
-  },
-});
 
 export const BookDetailsPage = () => {
   const { selectedBook } = useContext(BookContext);
   const [selectedBookValue, setSelectedBookValue] = selectedBook;
-  const classes = useStyles();
+  const classes = bookDetailsPageStyles();
 
   return (
     <>
@@ -159,13 +120,10 @@ export const BookDetailsPage = () => {
         </Grid>
         <Grid justify="center" alignItems="center" container>
           <Link className={classes.link} to="/">
-            <Button
-              className={classes.button}
-              color="secondary"
-              variant="contained"
-            >
+            <Fab className={classes.fab} color="secondary" variant="extended">
+              <KeyboardBackspaceIcon className={classes.fabIcon} />
               Back
-            </Button>
+            </Fab>
           </Link>
         </Grid>
       </Container>

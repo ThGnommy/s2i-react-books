@@ -11,24 +11,8 @@ import {
   Grid,
 } from "@material-ui/core";
 import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
-
-const useStyles = makeStyles({
-  root: {
-    padding: "1rem",
-    textAlign: "center",
-  },
-  media: {
-    height: 240,
-    backgroundSize: "contain",
-    margin: "1rem",
-  },
-  button: {
-    justifyContent: "center",
-  },
-  link: {
-    textDecoration: "none",
-  },
-});
+import { bookStyles } from "../../styles";
+import bookPropTypes from "../../propTypes/bookPropTypes";
 
 export const Book = ({
   title,
@@ -41,7 +25,7 @@ export const Book = ({
   rating,
   previewLink,
 }) => {
-  const classes = useStyles();
+  const classes = bookStyles();
 
   const { bookList } = useContext(BookContext);
   const [bookListValue, setBookListValue] = bookList;
@@ -99,3 +83,5 @@ export const Book = ({
     </>
   );
 };
+
+Book.propTypes = bookPropTypes;

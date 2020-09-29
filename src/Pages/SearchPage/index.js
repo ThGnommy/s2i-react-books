@@ -13,7 +13,7 @@ import {
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { ArrowUpward } from "@material-ui/icons";
 import { Searchbar } from "../../components/Searchbar";
-import { makeStyles } from "@material-ui/core/styles";
+import { searchPageStyles } from "../../styles";
 import { BookList } from "../../components/BookList";
 import { ButtonSearch } from "../../components/ButtonSearch";
 import { BookContext } from "../../BookProvider";
@@ -21,42 +21,8 @@ import { BookContext } from "../../BookProvider";
 import "../../App.css";
 
 export const SearchPage = () => {
-  const useStyles = makeStyles((theme) => ({
-    grid: {
-      padding: theme.spacing(3),
-    },
-    searchBar: {
-      padding: theme.spacing(3),
-    },
-    fab: {
-      position: "fixed",
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-    buttonSearch: {
-      padding: theme.spacing(3),
-      marginBottom: theme.spacing(3),
-    },
-    freeEbook: {
-      padding: theme.spacing(3),
-    },
-    appBar: {
-      padding: "1rem",
-      margin: "1rem",
-      alignItems: "center",
-    },
-    title: {
-      fontWeight: 400,
-      letterSpacing: "1rem",
-      fontStyle: "italic",
-      color: "#fff",
-    },
-    loader: {
-      width: "50px",
-      height: "50px",
-    },
-  }));
-  const classes = useStyles();
+  const classes = searchPageStyles();
+
   const fabOnlyMobile = useMediaQuery("(max-width:600px)");
 
   const { loader } = useContext(BookContext);
