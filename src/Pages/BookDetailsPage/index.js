@@ -19,6 +19,7 @@ import Rating from "@material-ui/lab/Rating";
 import { bookDetailsPageStyles } from "../../styles";
 import { BookContext } from "../../BookProvider";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../../components/ScrollToTop";
 
 export const BookDetailsPage = () => {
   const { selectedBook } = useContext(BookContext);
