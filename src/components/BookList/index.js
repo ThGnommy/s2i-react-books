@@ -4,6 +4,7 @@ import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
 
 export const BookList = () => {
   const { bookList } = useContext(BookContext);
+  // eslint-disable-next-line
   const [bookListValue, setBookListValue] = bookList;
 
   const publishedDateTrim = (book) => {

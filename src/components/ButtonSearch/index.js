@@ -8,12 +8,15 @@ export const ButtonSearch = () => {
   const [queryValue, setqueryValue] = query;
 
   const { bookList } = useContext(BookContext);
+  // eslint-disable-next-line
   const [bookListValue, setBookListValue] = bookList;
 
   const { loader } = useContext(BookContext);
+  // eslint-disable-next-line
   const [loaderValue, setLoaderValue] = loader;
 
   const { freeEbook } = useContext(BookContext);
+  // eslint-disable-next-line
   const [freeEbookValue, setFreeEbookValue] = freeEbook;
 
   const handleButtonClick = () => {

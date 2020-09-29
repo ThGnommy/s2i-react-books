@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 
 export const BookDetailsPage = () => {
   const { selectedBook } = useContext(BookContext);
+  // eslint-disable-next-line
   const [selectedBookValue, setSelectedBookValue] = selectedBook;
   const classes = bookDetailsPageStyles();
 

@@ -7,7 +7,6 @@ import {
   CardMedia,
   Typography,
   Button,
-  makeStyles,
   Grid,
 } from "@material-ui/core";
 import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
@@ -28,9 +27,11 @@ export const Book = ({
   const classes = bookStyles();
 
   const { bookList } = useContext(BookContext);
+  // eslint-disable-next-line
   const [bookListValue, setBookListValue] = bookList;
 
   const { selectedBook } = useContext(BookContext);
+  // eslint-disable-next-line
   const [selectedBookValue, setSelectedBookValue] = selectedBook;
 
   const getCurrentBookDetails = () => {

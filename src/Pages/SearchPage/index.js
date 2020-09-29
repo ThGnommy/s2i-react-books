@@ -26,9 +26,11 @@ export const SearchPage = () => {
   const fabOnlyMobile = useMediaQuery("(max-width:600px)");
 
   const { loader } = useContext(BookContext);
+  // eslint-disable-next-line
   const [loaderValue, setLoaderValue] = loader;
 
   const { freeEbook } = useContext(BookContext);
+  // eslint-disable-next-line
   const [freeEbookValue, setFreeEbookValue] = freeEbook;
 
   const [checked, setChecked] = useState(false);
