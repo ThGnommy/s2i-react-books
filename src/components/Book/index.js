@@ -26,13 +26,12 @@ export const Book = ({
 }) => {
   const classes = bookStyles();
 
-  const { bookList } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [bookListValue, setBookListValue] = bookList;
-
-  const { selectedBook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [selectedBookValue, setSelectedBookValue] = selectedBook;
+  /* eslint-disable no-unused-vars */
+  const {
+    bookList: [bookListValue, setBookListValue],
+    selectedBook: [selectedBookValue, setSelectedBookValue],
+  } = useContext(BookContext);
+  /* eslint-enable no-unused-vars */
 
   const getCurrentBookDetails = () => {
     setSelectedBookValue({

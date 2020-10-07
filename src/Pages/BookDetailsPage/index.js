@@ -22,15 +22,20 @@ import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTop";
 
 export const BookDetailsPage = () => {
-  const { selectedBook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [selectedBookValue, setSelectedBookValue] = selectedBook;
+  /* eslint-disable no-unused-vars */
+  const {
+    selectedBook: [selectedBookValue, setSelectedBookValue],
+  } = useContext(BookContext);
+
+  /* eslint-enable no-unused-vars */
+
   const classes = bookDetailsPageStyles();
 
   return (
     <>
       <Container>
         <ScrollToTop />
+
         <Grid justify="center" alignItems="center" container>
           <AppBar className={classes.appBar} position="relative">
             <Toolbar>

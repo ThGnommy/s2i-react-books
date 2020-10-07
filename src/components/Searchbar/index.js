@@ -3,8 +3,9 @@ import { TextField } from "@material-ui/core";
 import { BookContext } from "../../BookProvider";
 
 export const Searchbar = () => {
-  const { query } = useContext(BookContext);
-  const [queryValue, setqueryValue] = query;
+  const {
+    query: [queryValue, setqueryValue],
+  } = useContext(BookContext);
 
   const handleSetName = (e) => {
     setqueryValue(e.target.value);

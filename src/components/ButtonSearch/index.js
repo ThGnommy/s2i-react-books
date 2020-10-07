@@ -4,16 +4,14 @@ import { BookContext } from "../../BookProvider";
 import axios from "axios";
 
 export const ButtonSearch = () => {
+  /* eslint-disable no-unused-vars */
   const {
     query: [queryValue, setqueryValue],
     bookList: [bookListValue, setBookListValue],
     loader: [loaderValue, setLoaderValue],
     freeEbook: [freeEbookValue, setFreeEbookValue],
   } = useContext(BookContext);
-
-  const x = useContext(BookContext);
-
-  console.log(x);
+  /* eslint-enable no-unused-vars */
 
   const handleButtonClick = () => {
     if (queryValue !== "") {

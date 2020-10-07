@@ -25,13 +25,12 @@ export const SearchPage = () => {
 
   const fabOnlyMobile = useMediaQuery("(max-width:600px)");
 
-  const { loader } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [loaderValue, setLoaderValue] = loader;
-
-  const { freeEbook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [freeEbookValue, setFreeEbookValue] = freeEbook;
+  /* eslint-disable no-unused-vars */
+  const {
+    loader: [loaderValue, setLoaderValue],
+    freeEbook: [freeEbookValue, setFreeEbookValue],
+  } = useContext(BookContext);
+  /* eslint-enable no-unused-vars */
 
   const [checked, setChecked] = useState(false);
 
