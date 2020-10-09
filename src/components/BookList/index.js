@@ -4,8 +4,6 @@ import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
 
 export const BookList = () => {
   const { bookList } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [bookListValue, setBookListValue] = bookList;
 
   const publishedDateTrim = (book) => {
     if (book.volumeInfo.publishedDate !== undefined) {
@@ -21,7 +19,7 @@ export const BookList = () => {
 
   return (
     <>
-      {bookListValue.map((book) => (
+      {bookList.map((book) => (
         <Book
           key={handleIfPropsUndefined(book.id)}
           id={handleIfPropsUndefined(book.id)}

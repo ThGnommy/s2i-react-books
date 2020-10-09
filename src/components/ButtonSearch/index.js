@@ -7,9 +7,9 @@ export const ButtonSearch = () => {
   /* eslint-disable no-unused-vars */
   const {
     query: [queryValue, setqueryValue],
-    bookList: [bookListValue, setBookListValue],
     loader: [loaderValue, setLoaderValue],
     freeEbook: [freeEbookValue, setFreeEbookValue],
+    dispatch
   } = useContext(BookContext);
   /* eslint-enable no-unused-vars */
 
@@ -31,8 +31,8 @@ export const ButtonSearch = () => {
       .then((response) => {
         console.log(response.data.items);
         response.data.items.length > 0
-          ? setBookListValue(response.data.items)
-          : setBookListValue([]);
+          ? dispatch({type: 'FETCH_BOOKS', payload: response.data.items})
+          : dispatch({type: 'FETCH_BOOKS', payload: []})
         setLoaderValue(false);
       })
       .catch((error) => {
