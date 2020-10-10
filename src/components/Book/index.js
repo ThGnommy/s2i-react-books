@@ -26,24 +26,22 @@ export const Book = ({
 }) => {
   const classes = bookStyles();
 
-  /* eslint-disable no-unused-vars */
-  const {
-    bookList: [bookListValue, setBookListValue],
-    selectedBook: [selectedBookValue, setSelectedBookValue],
-  } = useContext(BookContext);
-  /* eslint-enable no-unused-vars */
+  const { bookList, dispatchSelectedBook } = useContext(BookContext);
 
   const getCurrentBookDetails = () => {
-    setSelectedBookValue({
-      title: handleIfPropsUndefined(title),
-      id: handleIfPropsUndefined(id),
-      authors: handleIfPropsUndefined(author),
-      subtitle: handleIfPropsUndefined(subtitle),
-      publisher: handleIfPropsUndefined(publisher),
-      description: handleIfPropsUndefined(description),
-      publisherDate: handleIfPropsUndefined(publisherDate),
-      rating: handleIfPropsUndefined(rating),
-      previewLink: handleIfPropsUndefined(previewLink),
+    dispatchSelectedBook({
+      type: "GET_SELECTED_BOOK",
+      payload: {
+        title: handleIfPropsUndefined(title),
+        id: handleIfPropsUndefined(id),
+        authors: handleIfPropsUndefined(author),
+        subtitle: handleIfPropsUndefined(subtitle),
+        publisher: handleIfPropsUndefined(publisher),
+        description: handleIfPropsUndefined(description),
+        publisherDate: handleIfPropsUndefined(publisherDate),
+        rating: handleIfPropsUndefined(rating),
+        previewLink: handleIfPropsUndefined(previewLink),
+      },
     });
   };
 
@@ -71,7 +69,7 @@ export const Book = ({
               to={`/book/${title.replace(/\s/g, "")}`}
               onClick={getCurrentBookDetails}
               className={classes.link}
-              state={bookListValue}
+              state={bookList}
             >
               <Button size="small" color="primary">
                 More Info

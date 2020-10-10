@@ -22,12 +22,7 @@ import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTop";
 
 export const BookDetailsPage = () => {
-  /* eslint-disable no-unused-vars */
-  const {
-    selectedBook: [selectedBookValue, setSelectedBookValue],
-  } = useContext(BookContext);
-
-  /* eslint-enable no-unused-vars */
+  const { selectedBook } = useContext(BookContext);
 
   const classes = bookDetailsPageStyles();
 
@@ -40,24 +35,24 @@ export const BookDetailsPage = () => {
           <AppBar className={classes.appBar} position="relative">
             <Toolbar>
               <Typography className={classes.title} variant="h2">
-                {selectedBookValue.title}
+                {selectedBook.title}
               </Typography>
             </Toolbar>
           </AppBar>
         </Grid>
         <Grid justify="center" alignItems="center" container>
-          <Typography variant="h4">{selectedBookValue.subtitle}</Typography>
+          <Typography variant="h4">{selectedBook.subtitle}</Typography>
         </Grid>
         <Grid justify="center" alignItems="center" container>
           <Card className={classes.card}>
             <CardMedia
               className={classes.media}
-              image={`https://books.google.com/books/content?id=${selectedBookValue.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
+              image={`https://books.google.com/books/content?id=${selectedBook.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}
             />
           </Card>
         </Grid>
         <Grid justify="center" alignItems="center" container>
-          {selectedBookValue.description !== undefined ? (
+          {selectedBook.description !== undefined ? (
             <>
               <Accordion color="primary">
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -67,7 +62,7 @@ export const BookDetailsPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography className={classes.text}>
-                    {selectedBookValue.description}
+                    {selectedBook.description}
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -76,39 +71,39 @@ export const BookDetailsPage = () => {
         </Grid>
 
         <Grid justify="center" alignItems="center" container>
-          {selectedBookValue.authors !== undefined ? (
+          {selectedBook.authors !== undefined ? (
             <>
               <Typography className={classes.text}>
-                Authors: {selectedBookValue.authors}
+                Authors: {selectedBook.authors}
               </Typography>
             </>
           ) : null}
         </Grid>
         <Grid justify="center" alignItems="center" container>
-          {selectedBookValue.publisher !== undefined ? (
+          {selectedBook.publisher !== undefined ? (
             <>
               <Typography className={classes.text}>
-                Publisher: {selectedBookValue.publisher}
+                Publisher: {selectedBook.publisher}
               </Typography>
             </>
           ) : null}
         </Grid>
         <Grid justify="center" alignItems="center" container>
-          {selectedBookValue.publisherDate !== undefined ? (
+          {selectedBook.publisherDate !== undefined ? (
             <>
               <Typography className={classes.text}>
-                Publisher Date: {selectedBookValue.publisherDate}
+                Publisher Date: {selectedBook.publisherDate}
               </Typography>
             </>
           ) : null}
         </Grid>
         <Grid justify="center" alignItems="center" container>
-          {selectedBookValue.rating !== undefined ? (
+          {selectedBook.rating !== undefined ? (
             <>
               <Typography className={classes.text}>Rating</Typography>
               <Rating
                 name="read-only"
-                value={selectedBookValue.rating}
+                value={selectedBook.rating}
                 readOnly
                 size="large"
               />
@@ -120,7 +115,7 @@ export const BookDetailsPage = () => {
             variant="contained"
             color="primary"
             target="_blank"
-            href={selectedBookValue.previewLink}
+            href={selectedBook.previewLink}
             size="large"
           >
             Book Preview
