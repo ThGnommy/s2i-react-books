@@ -4,29 +4,28 @@ import { BookContext } from "../../BookProvider";
 import axios from "axios";
 
 export const ButtonSearch = () => {
-  /* eslint-disable no-unused-vars */
   const {
-    query: [queryValue, setqueryValue],
-    loader: [loaderValue, setLoaderValue],
-    freeEbook: [freeEbookValue, setFreeEbookValue],
+    query,
+    freeEbook,
+    dispatchLoader,
     dispatchBookList,
+    dispatchQuery,
   } = useContext(BookContext);
-  /* eslint-enable no-unused-vars */
 
   const handleButtonClick = () => {
-    if (queryValue !== "") {
+    if (query !== "") {
       fetchData();
     } else {
       return;
     }
-    setqueryValue("");
+    dispatchQuery({ type: "RESET_QUERY" });
   };
 
   const fetchData = () => {
-    setLoaderValue(true);
+    dispatchLoader({ type: "SHOW_LOADER" });
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${queryValue}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbookValue}`
+        `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbook}`
       )
       .then((response) => {
         console.log(response.data.items);
@@ -36,7 +35,7 @@ export const ButtonSearch = () => {
               payload: response.data.items,
             })
           : dispatchBookList({ type: "FETCH_BOOKS", payload: [] });
-        setLoaderValue(false);
+        dispatchLoader({ type: "HIDE_LOADER" });
       })
       .catch((error) => {
         console.log("The error: " + error);

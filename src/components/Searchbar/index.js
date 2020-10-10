@@ -3,19 +3,17 @@ import { TextField } from "@material-ui/core";
 import { BookContext } from "../../BookProvider";
 
 export const Searchbar = () => {
-  const {
-    query: [queryValue, setqueryValue],
-  } = useContext(BookContext);
+  const { query, dispatchQuery } = useContext(BookContext);
 
   const handleSetName = (e) => {
-    setqueryValue(e.target.value);
+    dispatchQuery({ type: "SET_QUERY", payload: e.target.value });
   };
 
   return (
     <>
       <TextField
         fullWidth
-        value={queryValue}
+        value={query}
         onChange={handleSetName}
         id="filled-basic"
         label="Book name..."

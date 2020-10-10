@@ -25,12 +25,7 @@ export const SearchPage = () => {
 
   const fabOnlyMobile = useMediaQuery("(max-width:600px)");
 
-  /* eslint-disable no-unused-vars */
-  const {
-    loader: [loaderValue, setLoaderValue],
-    freeEbook: [freeEbookValue, setFreeEbookValue],
-  } = useContext(BookContext);
-  /* eslint-enable no-unused-vars */
+  const { loader, dispatchFreeEbook } = useContext(BookContext);
 
   const [checked, setChecked] = useState(false);
 
@@ -38,9 +33,13 @@ export const SearchPage = () => {
     setChecked(!checked);
 
     if (checked !== true) {
-      setFreeEbookValue("filter=free-ebooks");
+      dispatchFreeEbook({
+        type: "SET_FREE_BOOK_ON",
+      });
     } else {
-      setFreeEbookValue("");
+      dispatchFreeEbook({
+        type: "SET_FREE_BOOK_OFF",
+      });
     }
   };
 
@@ -91,7 +90,7 @@ export const SearchPage = () => {
           <ButtonSearch />
         </Grid>
         <Grid container justify="center" alignItems="center">
-          {loaderValue ? (
+          {loader ? (
             <>
               <CircularProgress className={classes.loader} />
             </>

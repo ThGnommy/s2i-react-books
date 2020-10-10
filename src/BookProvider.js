@@ -1,5 +1,11 @@
-import React, { useState, createContext, useReducer } from "react";
-import { bookReducer, selectedBookReducer } from "./reducers/bookReducer";
+import React, { createContext, useReducer } from "react";
+import {
+  bookListReducer,
+  selectedBookReducer,
+  queryReducer,
+  loaderReducer,
+  freeEbookReducer,
+} from "./reducers/bookReducer";
 
 export const BookContext = createContext();
 
@@ -8,24 +14,30 @@ export const handleIfPropsUndefined = (value) => {
 };
 
 export const BookProvider = (props) => {
-  const [query, setQuery] = useState("");
+  const [query, dispatchQuery] = useReducer(queryReducer, "");
 
-  const [bookList, dispatchBookList] = useReducer(bookReducer, []);
+  const [loader, dispatchLoader] = useReducer(loaderReducer, false);
+
+  const [freeEbook, dispatchFreeEbook] = useReducer(freeEbookReducer, "");
+
+  const [bookList, dispatchBookList] = useReducer(bookListReducer, []);
+
   const [selectedBook, dispatchSelectedBook] = useReducer(
     selectedBookReducer,
     {}
   );
 
-  const [loader, setLoader] = useState(false);
-  const [freeEbook, setFreeEbook] = useState("");
   return (
     <BookContext.Provider
       value={{
-        query: [query, setQuery],
-        loader: [loader, setLoader],
-        freeEbook: [freeEbook, setFreeEbook],
+        query,
+        loader,
+        freeEbook,
         bookList,
         selectedBook,
+        dispatchQuery,
+        dispatchFreeEbook,
+        dispatchLoader,
         dispatchBookList,
         dispatchSelectedBook,
       }}
