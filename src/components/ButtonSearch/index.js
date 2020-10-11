@@ -28,7 +28,7 @@ export const ButtonSearch = () => {
         `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbook}`
       )
       .then((response) => {
-        console.log(response.data.items);
+        // console.log(response.data.items);
         response.data.items.length > 0
           ? dispatchBookList({
               type: "FETCH_BOOKS",
