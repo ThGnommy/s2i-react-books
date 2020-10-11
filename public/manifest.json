@@ -1,21 +1,31 @@
 {
   "short_name": "Book Finder",
-  "name": "Search your favorite book.",
+  "name": "Google Book Finder",
   "icons": [
+
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "favicon/mstile-150-150.png",
+      "sizes": "150x150",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "rel": "icon",
+      "src": "favicon/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
+      "rel": "icon",
+      "src": "favicon/favicon-32x32.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "32x32"
+    },
+    {
+      "rel": "apple-touch-icon",
+      "src": "favicon/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "76x76"
     }
   ],
   "start_url": ".",
