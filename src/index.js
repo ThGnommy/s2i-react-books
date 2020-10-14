@@ -5,6 +5,8 @@ import App from "./App";
 import { BookProvider } from "./BookProvider";
 import * as serviceWorker from "./serviceWorker";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
 
 const theme = createMuiTheme({
   palette: {
@@ -31,11 +33,13 @@ theme.typography.h2 = {
 };
 
 ReactDOM.render(
-  <BookProvider>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </BookProvider>,
+  <Provider store={store}>
+    <BookProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BookProvider>
+  </Provider>,
   document.getElementById("root")
 );
 

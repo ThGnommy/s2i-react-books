@@ -19,6 +19,7 @@ import { ButtonSearch } from "../../components/ButtonSearch";
 import { BookContext } from "../../BookProvider";
 import ScrollToTop from "../../components/ScrollToTop";
 import "../../App.css";
+import { useSelector } from "react-redux";
 
 export const SearchPage = () => {
   const classes = searchPageStyles();
@@ -34,6 +35,8 @@ export const SearchPage = () => {
   const [freeEbookValue, setFreeEbookValue] = freeEbook;
 
   const [checked, setChecked] = useState(false);
+
+  const loaderRedux = useSelector((state) => state.reducerLoader);
 
   const handleSwitchFreeEbook = () => {
     setChecked(!checked);
@@ -92,7 +95,7 @@ export const SearchPage = () => {
           <ButtonSearch />
         </Grid>
         <Grid container justify="center" alignItems="center">
-          {loaderValue ? (
+          {loaderRedux ? (
             <>
               <CircularProgress className={classes.loader} />
             </>
