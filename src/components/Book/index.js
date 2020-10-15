@@ -12,6 +12,7 @@ import {
 import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
 import { bookStyles } from "../../styles";
 import bookPropTypes from "../../propTypes/bookPropTypes";
+import { useSelector } from "react-redux";
 
 export const Book = ({
   title,
@@ -25,6 +26,8 @@ export const Book = ({
   previewLink,
 }) => {
   const classes = bookStyles();
+
+  const bookListRedux = useSelector((state) => state.reducerBook);
 
   const { bookList } = useContext(BookContext);
   // eslint-disable-next-line
@@ -72,7 +75,7 @@ export const Book = ({
               to={`/book/${title.replace(/\s/g, "")}`}
               onClick={getCurrentBookDetails}
               className={classes.link}
-              state={bookListValue}
+              state={bookListRedux}
             >
               <Button size="small" color="primary">
                 More Info

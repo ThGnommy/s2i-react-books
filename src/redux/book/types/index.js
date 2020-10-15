@@ -1,0 +1,7 @@
+export const GET_BOOK_LIST = "GET_BOOK_LIST";
+export const RESET_BOOK_LIST = "RESET_BOOK_LIST";
+
+export const SET_QUERY = "SET_QUERY";
+export const RESET_QUERY = "RESET_QUERY";
+
+export const GET_SELECTED_BOOK_VALUES = "GET_SELECTED_BOOK_VALUES";
