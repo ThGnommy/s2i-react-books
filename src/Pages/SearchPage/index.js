@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Grid,
@@ -16,23 +16,17 @@ import { Searchbar } from "../../components/Searchbar";
 import { searchPageStyles } from "../../styles";
 import { BookList } from "../../components/BookList";
 import { ButtonSearch } from "../../components/ButtonSearch";
-import { BookContext } from "../../BookProvider";
 import ScrollToTop from "../../components/ScrollToTop";
 import "../../App.css";
-import { useSelector } from "react-redux";
+import { setFreeEbookOn, setFreeEbookOff } from "../../redux/book/actions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const SearchPage = () => {
   const classes = searchPageStyles();
 
   const fabOnlyMobile = useMediaQuery("(max-width:600px)");
 
-  const { loader } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [loaderValue, setLoaderValue] = loader;
-
-  const { freeEbook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [freeEbookValue, setFreeEbookValue] = freeEbook;
+  const dispatch = useDispatch();
 
   const [checked, setChecked] = useState(false);
 
@@ -42,9 +36,9 @@ export const SearchPage = () => {
     setChecked(!checked);
 
     if (checked !== true) {
-      setFreeEbookValue("filter=free-ebooks");
+      dispatch(setFreeEbookOn());
     } else {
-      setFreeEbookValue("");
+      dispatch(setFreeEbookOff());
     }
   };
 

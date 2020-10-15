@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
-import { BookContext } from "../../BookProvider";
 import axios from "axios";
 import { showLoader, hideLoader } from "../../redux/loader/actions";
 import { getBookList, resetBookList } from "../../redux/book/actions";
@@ -8,16 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetQuery } from "../../redux/book/actions";
 
 export const ButtonSearch = () => {
-  const {
-    query,
-    bookList: [bookListValue, setBookListValue],
-    loader: [loaderValue, setLoaderValue],
-    freeEbook: [freeEbookValue, setFreeEbookValue],
-  } = useContext(BookContext);
-  const [queryValue, setqueryValue] = query;
-
   const dispatch = useDispatch();
   const queryRedux = useSelector((state) => state.reducerQuery);
+  const freeEbookRedux = useSelector((state) => state.reducerFreeEbook);
 
   const handleButtonClick = () => {
     if (queryRedux !== "") {
@@ -29,11 +21,10 @@ export const ButtonSearch = () => {
   };
 
   const fetchData = () => {
-    // setLoaderValue(true);
     dispatch(showLoader());
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${queryRedux}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbookValue}`
+        `https://www.googleapis.com/books/v1/volumes?q=${queryRedux}&key=${process.env.REACT_APP_API_KEY}&printType=books&maxResults=20&${freeEbookRedux}`
       )
       .then((response) => {
         // console.log(response.data.items);

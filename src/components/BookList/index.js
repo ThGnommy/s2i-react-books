@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Book } from "../../components/Book";
-import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
-import {useSelector} from 'react-redux'
+import { handleIfPropsUndefined } from "../../utility";
+import { useSelector } from "react-redux";
 
 export const BookList = () => {
-  const { bookList } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [bookListValue, setBookListValue] = bookList;
-
   const bookListRedux = useSelector((state) => state.reducerBook);
-  
 
   const publishedDateTrim = (book) => {
     if (book.volumeInfo.publishedDate !== undefined) {

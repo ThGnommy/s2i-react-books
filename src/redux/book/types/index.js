@@ -5,3 +5,6 @@ export const SET_QUERY = "SET_QUERY";
 export const RESET_QUERY = "RESET_QUERY";
 
 export const GET_SELECTED_BOOK_VALUES = "GET_SELECTED_BOOK_VALUES";
+
+export const SET_FREEBOOK_ON = "SET_FREEBOOK_ON";
+export const SET_FREEBOOK_OFF = "SET_FREEBOOK_OFF";

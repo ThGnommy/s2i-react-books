@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -9,10 +9,11 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
-import { BookContext, handleIfPropsUndefined } from "../../BookProvider";
+import { handleIfPropsUndefined } from "../../utility";
 import { bookStyles } from "../../styles";
 import bookPropTypes from "../../propTypes/bookPropTypes";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getSelectedBook } from "../../redux/book/actions";
 
 export const Book = ({
   title,
@@ -26,29 +27,24 @@ export const Book = ({
   previewLink,
 }) => {
   const classes = bookStyles();
+  const dispatch = useDispatch();
 
   const bookListRedux = useSelector((state) => state.reducerBook);
 
-  const { bookList } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [bookListValue, setBookListValue] = bookList;
-
-  const { selectedBook } = useContext(BookContext);
-  // eslint-disable-next-line
-  const [selectedBookValue, setSelectedBookValue] = selectedBook;
-
   const getCurrentBookDetails = () => {
-    setSelectedBookValue({
-      title: handleIfPropsUndefined(title),
-      id: handleIfPropsUndefined(id),
-      authors: handleIfPropsUndefined(author),
-      subtitle: handleIfPropsUndefined(subtitle),
-      publisher: handleIfPropsUndefined(publisher),
-      description: handleIfPropsUndefined(description),
-      publisherDate: handleIfPropsUndefined(publisherDate),
-      rating: handleIfPropsUndefined(rating),
-      previewLink: handleIfPropsUndefined(previewLink),
-    });
+    dispatch(
+      getSelectedBook({
+        title: handleIfPropsUndefined(title),
+        id: handleIfPropsUndefined(id),
+        authors: handleIfPropsUndefined(author),
+        subtitle: handleIfPropsUndefined(subtitle),
+        publisher: handleIfPropsUndefined(publisher),
+        description: handleIfPropsUndefined(description),
+        publisherDate: handleIfPropsUndefined(publisherDate),
+        rating: handleIfPropsUndefined(rating),
+        previewLink: handleIfPropsUndefined(previewLink),
+      })
+    );
   };
 
   return (

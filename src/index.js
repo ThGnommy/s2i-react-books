@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BookProvider } from "./BookProvider";
 import * as serviceWorker from "./serviceWorker";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Provider } from "react-redux";
@@ -34,11 +33,9 @@ theme.typography.h2 = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BookProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BookProvider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

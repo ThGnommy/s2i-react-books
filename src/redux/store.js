@@ -1,6 +1,10 @@
 import { createStore } from "redux";
 import { reducerLoader } from "./loader/reducers/reducerLoader";
-import { reducerBook } from "./book/reducers/reducerBook";
+import {
+  reducerBook,
+  reducerSelectedBook,
+  reducerFreeEbook,
+} from "./book/reducers/reducerBook";
 import { reducerQuery } from "./book/reducers/reducerQuery";
 
 import { combineReducers } from "redux";
@@ -8,6 +12,8 @@ import { combineReducers } from "redux";
 const rootReducer = combineReducers({
   reducerLoader,
   reducerBook,
+  reducerSelectedBook,
+  reducerFreeEbook,
   reducerQuery,
 });
 
