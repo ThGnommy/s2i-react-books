@@ -12,9 +12,10 @@ export const ButtonSearch = () => {
   const freeEbookRedux = useSelector((state) => state.reducerFreeEbook);
 
   const handleButtonClick = () => {
-    if (queryRedux !== "") {
+    if (queryRedux.trim() !== "") {
       fetchData();
     } else {
+      dispatch(resetQuery());
       return;
     }
     dispatch(resetQuery());
